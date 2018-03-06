@@ -366,11 +366,11 @@
 						<!-- portfolio items start -->
 						<div class="isotope-container row grid-space-20">
 							 <?php                  
-                                    $result = mysql_query("SELECT prtf.*, cat.description as cat_description, cat.artefact FROM `portfolio` as prtf
+                                    $result = mysqli_query($db,"SELECT prtf.*, cat.description as cat_description, cat.artefact FROM `portfolio` as prtf
                                                            LEFT OUTER JOIN categories as cat 
-                                                           ON prtf.category_id = cat.id",$db);
-                                    $myrow = mysql_fetch_array ($result);
-                                    do {         
+                                                           ON prtf.category_id = cat.id");
+                                    while( $myrow = mysqli_fetch_assoc($result) )
+									{         
                                     printf (
                                     	" 
                                            <div class='col-sm-6 col-md-3 isotope-item %s'>
@@ -416,7 +416,7 @@
                                     	", $myrow['artefact'], $myrow['img'], $myrow['id'], $myrow['cat_description'], $myrow['id'], $myrow['name'], $myrow['id'], 
                                     	$myrow['id'], $myrow['id'], $myrow['name'], $myrow['name'], $myrow['text'], $myrow['img']);      
                                         }
-                                    while ($myrow = mysql_fetch_array($result));
+										mysqli_free_result($result); 
                              ?> 		
 
 						</div>
