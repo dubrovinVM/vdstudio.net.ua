@@ -1,4 +1,4 @@
-<? 
+<?php
 $db = mysqli_connect("localhost","vites","30041986","vdstudio");
 $db->set_charset('utf8');
 if (!$db) 
